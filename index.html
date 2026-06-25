@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aurion Jewellery | Artificial Jewellery for Every Moment</title>
+<meta name="description" content="Aurion Jewellery — elegant artificial jewellery for gifting and self-use. Necklaces, earrings, rings & bracelets crafted to make every girl and woman shine.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,500&family=Marcellus&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --gold:#c9a24b;
+    --gold-light:#e9d3a3;
+    --gold-deep:#9c7a2e;
+    --black:#0c0a08;
+    --black-soft:#161310;
+    --cream:#fbf6ec;
+    --cream-deep:#f1e6cf;
+    --rose:#e8c4c4;
+    --text-muted:#a99c86;
+    --shadow:0 20px 50px rgba(0,0,0,.35);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Poppins',sans-serif;
+    background:var(--cream);
+    color:var(--black);
+    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.serif{font-family:'Cormorant Garamond',serif;}
+  .brand-font{font-family:'Marcellus',serif;}
+  a{text-decoration:none;color:inherit;}
+  img{max-width:100%;display:block;}
+  ul{list-style:none;}
+  .wrap{max-width:1200px;margin:0 auto;padding:0 32px;}
+  .btn{
+    display:inline-flex;align-items:center;gap:10px;
+    padding:15px 36px;border-radius:50px;
+    font-size:14px;letter-spacing:1.5px;text-transform:uppercase;font-weight:500;
+    cursor:pointer;border:1px solid transparent;transition:.35s;
+  }
+  .btn-gold{background:linear-gradient(135deg,var(--gold-light),var(--gold) 60%,var(--gold-deep));color:var(--black);box-shadow:0 10px 25px rgba(201,162,75,.4);}
+  .btn-gold:hover{transform:translateY(-3px);box-shadow:0 16px 32px rgba(201,162,75,.55);}
+  .btn-outline{border-color:var(--gold);color:var(--cream);}
+  .btn-outline:hover{background:var(--gold);color:var(--black);}
+  .btn-outline.dark{border-color:var(--black);color:var(--black);}
+  .btn-outline.dark:hover{background:var(--black);color:var(--cream);}
+
+  /* ---------- NAV ---------- */
+  header{
+    position:fixed;top:0;left:0;right:0;z-index:1000;
+    background:rgba(12,10,8,.0);
+    transition:.4s;
+    padding:22px 0;
+  }
+  header.scrolled{background:rgba(12,10,8,.92);backdrop-filter:blur(10px);padding:14px 0;box-shadow:0 6px 30px rgba(0,0,0,.25);}
+  nav{display:flex;align-items:center;justify-content:space-between;}
+  .logo{display:flex;align-items:center;gap:12px;color:var(--cream);}
+  .logo-emblem{
+    width:42px;height:42px;border-radius:50%;
+    border:1.5px solid var(--gold);
+    display:flex;align-items:center;justify-content:center;
+    font-family:'Cormorant Garamond',serif;font-weight:700;font-size:20px;
+    color:var(--gold);position:relative;flex:none;
+  }
+  .logo-emblem::before,.logo-emblem::after{
+    content:"";position:absolute;border:1px solid var(--gold);border-radius:50%;opacity:.5;
+  }
+  .logo-emblem::before{width:50px;height:50px;}
+  .logo-text{font-family:'Marcellus',serif;font-size:21px;letter-spacing:2px;}
+  .logo-text span{color:var(--gold);}
+  .nav-links{display:flex;gap:38px;}
+  .nav-links a{
+    color:var(--cream);font-size:13.5px;letter-spacing:1.2px;text-transform:uppercase;
+    position:relative;padding-bottom:6px;
+  }
+  .nav-links a::after{
+    content:"";position:absolute;left:0;bottom:0;width:0;height:1px;background:var(--gold);transition:.3s;
+  }
+  .nav-links a:hover::after{width:100%;}
+  .nav-actions{display:flex;align-items:center;gap:22px;}
+  .icon-btn{color:var(--cream);font-size:18px;cursor:pointer;position:relative;}
+  .cart-count{
+    position:absolute;top:-8px;right:-10px;background:var(--gold);color:var(--black);
+    font-size:10px;width:17px;height:17px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:600;
+  }
+  .burger{display:none;flex-direction:column;gap:5px;cursor:pointer;z-index:1100;}
+  .burger span{width:26px;height:2px;background:var(--cream);transition:.3s;}
+  .burger.active span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+  .burger.active span:nth-child(2){opacity:0;}
+  .burger.active span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    min-height:100vh;display:flex;align-items:center;position:relative;
+    background:radial-gradient(ellipse at 70% 20%, #2a2118 0%, var(--black) 55%, #070504 100%);
+    overflow:hidden;
+  }
+  .hero::before{
+    content:"";position:absolute;inset:0;
+    background-image:
+      radial-gradient(circle at 15% 30%, rgba(201,162,75,.18), transparent 40%),
+      radial-gradient(circle at 85% 75%, rgba(201,162,75,.12), transparent 45%);
+    pointer-events:none;
+  }
+  .hero-particles span{
+    position:absolute;border-radius:50%;background:var(--gold);opacity:.55;
+    animation:float 9s ease-in-out infinite;
+  }
+  @keyframes float{0%,100%{transform:translateY(0) translateX(0);}50%{transform:translateY(-30px) translateX(15px);}}
+  .hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:50px;align-items:center;position:relative;z-index:2;padding-top:90px;}
+  .hero-tag{
+    display:inline-flex;align-items:center;gap:10px;color:var(--gold-light);
+    font-size:12.5px;letter-spacing:3px;text-transform:uppercase;margin-bottom:22px;
+    border:1px solid rgba(201,162,75,.4);padding:8px 18px;border-radius:50px;
+  }
+  .hero h1{
+    color:var(--cream);font-size:clamp(42px,6.5vw,76px);font-weight:600;line-height:1.08;margin-bottom:22px;
+  }
+  .hero h1 em{font-style:italic;color:var(--gold);}
+  .hero p{color:var(--text-muted);font-size:17px;line-height:1.8;max-width:480px;margin-bottom:34px;}
+  .hero-btns{display:flex;gap:18px;flex-wrap:wrap;margin-bottom:46px;}
+  .hero-stats{display:flex;gap:46px;}
+  .hero-stats div h3{color:var(--gold);font-size:32px;font-weight:700;}
+  .hero-stats div span{color:var(--text-muted);font-size:12.5px;letter-spacing:1px;text-transform:uppercase;}
+  .hero-visual{position:relative;display:flex;justify-content:center;align-items:center;}
+  .hero-ring{
+    width:420px;height:420px;border-radius:50%;
+    border:1px dashed rgba(201,162,75,.35);
+    display:flex;align-items:center;justify-content:center;position:relative;
+    animation:spin 30s linear infinite;
+  }
+  @keyframes spin{to{transform:rotate(360deg);}}
+  .hero-ring::before{content:"";position:absolute;inset:34px;border-radius:50%;border:1px solid rgba(201,162,75,.2);}
+  .hero-photo{
+    width:330px;height:420px;border-radius:18px;overflow:hidden;
+    box-shadow:var(--shadow);border:1px solid rgba(201,162,75,.4);
+    animation:none;
+  }
+  .hero-photo img{width:100%;height:100%;object-fit:cover;}
+  .floating-card{
+    position:absolute;background:rgba(255,255,255,.06);backdrop-filter:blur(12px);
+    border:1px solid rgba(201,162,75,.35);border-radius:14px;padding:14px 18px;
+    color:var(--cream);font-size:13px;display:flex;align-items:center;gap:10px;
+    animation:bob 4s ease-in-out infinite;box-shadow:0 10px 30px rgba(0,0,0,.3);
+  }
+  .floating-card.c1{top:8%;left:-40px;animation-delay:.5s;}
+  .floating-card.c2{bottom:10%;right:-30px;animation-delay:1.2s;}
+  @keyframes bob{0%,100%{transform:translateY(0);}50%{transform:translateY(-14px);}}
+  .floating-card .dot{width:8px;height:8px;border-radius:50%;background:var(--gold);box-shadow:0 0 12px var(--gold);}
+  .scroll-cue{
+    position:absolute;bottom:28px;left:50%;transform:translateX(-50%);color:var(--text-muted);
+    font-size:11px;letter-spacing:2px;text-transform:uppercase;display:flex;flex-direction:column;align-items:center;gap:8px;z-index:2;
+  }
+  .scroll-cue .line{width:1px;height:30px;background:linear-gradient(var(--gold),transparent);animation:scrollline 2s ease-in-out infinite;}
+  @keyframes scrollline{0%{opacity:1;transform:scaleY(0.4);}50%{opacity:1;transform:scaleY(1);}100%{opacity:0;transform:scaleY(0.4);}}
+
+  /* ---------- MARQUEE ---------- */
+  .marquee{background:var(--black);overflow:hidden;padding:16px 0;border-top:1px solid rgba(201,162,75,.2);border-bottom:1px solid rgba(201,162,75,.2);}
+  .marquee-track{display:flex;gap:60px;white-space:nowrap;animation:marquee 22s linear infinite;width:max-content;}
+  .marquee-track span{color:var(--gold-light);font-size:13px;letter-spacing:3px;text-transform:uppercase;display:flex;align-items:center;gap:14px;}
+  .marquee-track span::after{content:"✦";color:var(--gold);}
+  @keyframes marquee{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+
+  /* ---------- SECTION GENERIC ---------- */
+  section{padding:110px 0;}
+  .section-head{text-align:center;max-width:640px;margin:0 auto 64px;}
+  .eyebrow{color:var(--gold-deep);font-size:12.5px;letter-spacing:3px;text-transform:uppercase;font-weight:600;margin-bottom:14px;display:block;}
+  .section-head h2{font-size:clamp(32px,4.5vw,48px);font-weight:600;line-height:1.2;}
+  .section-head p{color:#7a6f5e;margin-top:16px;font-size:15.5px;line-height:1.8;}
+  .reveal{opacity:0;transform:translateY(40px);transition:opacity .8s ease, transform .8s ease;}
+  .reveal.in{opacity:1;transform:translateY(0);}
+
+  /* ---------- CATEGORIES ---------- */
+  .categories{background:var(--cream);}
+  .cat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:26px;}
+  .cat-card{
+    position:relative;border-radius:20px;overflow:hidden;aspect-ratio:3/4;cursor:pointer;
+    box-shadow:0 12px 30px rgba(0,0,0,.08);
+  }
+  .cat-card img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease;}
+  .cat-card:hover img{transform:scale(1.1);}
+  .cat-overlay{
+    position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(12,10,8,.88) 100%);
+    display:flex;flex-direction:column;justify-content:flex-end;padding:24px;color:var(--cream);
+  }
+  .cat-overlay h3{font-size:23px;font-weight:600;}
+  .cat-overlay span{font-size:12px;letter-spacing:1.5px;color:var(--gold-light);text-transform:uppercase;margin-top:4px;display:inline-block;}
+
+  /* ---------- FILTER TABS / PRODUCTS ---------- */
+  .shop{background:var(--black-soft);color:var(--cream);}
+  .shop .section-head p{color:var(--text-muted);}
+  .filter-tabs{display:flex;justify-content:center;gap:14px;margin-bottom:50px;flex-wrap:wrap;}
+  .filter-tab{
+    padding:11px 26px;border-radius:50px;border:1px solid rgba(201,162,75,.35);
+    font-size:13px;letter-spacing:1px;text-transform:uppercase;cursor:pointer;color:var(--text-muted);transition:.3s;
+  }
+  .filter-tab.active,.filter-tab:hover{background:var(--gold);color:var(--black);border-color:var(--gold);}
+  .product-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:28px;}
+  .product-card{
+    background:rgba(255,255,255,.03);border:1px solid rgba(201,162,75,.15);border-radius:18px;overflow:hidden;
+    transition:.4s; display:none;
+  }
+  .product-card.show{display:block;animation:fadein .5s ease;}
+  @keyframes fadein{from{opacity:0;transform:translateY(15px);}to{opacity:1;transform:translateY(0);}}
+  .product-card:hover{transform:translateY(-8px);border-color:rgba(201,162,75,.5);box-shadow:0 18px 40px rgba(0,0,0,.4);}
+  .product-img{position:relative;aspect-ratio:1/1.05;overflow:hidden;}
+  .product-img img{width:100%;height:100%;object-fit:cover;transition:transform .5s;}
+  .product-card:hover .product-img img{transform:scale(1.07);}
+  .badge{
+    position:absolute;top:14px;left:14px;background:var(--gold);color:var(--black);
+    font-size:10.5px;letter-spacing:1px;text-transform:uppercase;padding:5px 12px;border-radius:50px;font-weight:600;
+  }
+  .wishlist{
+    position:absolute;top:12px;right:12px;width:36px;height:36px;border-radius:50%;
+    background:rgba(0,0,0,.4);display:flex;align-items:center;justify-content:center;color:#fff;cursor:pointer;transition:.3s;font-size:16px;
+  }
+  .wishlist:hover,.wishlist.active{background:var(--gold);color:var(--black);}
+  .product-info{padding:20px;}
+  .product-cat{color:var(--gold-light);font-size:11px;letter-spacing:1.5px;text-transform:uppercase;}
+  .product-info h4{font-size:18px;margin:8px 0 10px;font-weight:500;font-family:'Marcellus',serif;}
+  .price-row{display:flex;align-items:center;gap:10px;margin-bottom:14px;}
+  .price{color:var(--gold);font-weight:600;font-size:17px;}
+  .price-old{color:#6e6457;text-decoration:line-through;font-size:13.5px;}
+  .stars{color:var(--gold);font-size:12px;margin-bottom:4px;letter-spacing:2px;}
+  .add-btn{
+    width:100%;padding:11px;border-radius:10px;background:transparent;border:1px solid var(--gold);
+    color:var(--gold);font-size:12.5px;letter-spacing:1px;text-transform:uppercase;cursor:pointer;transition:.3s;
+  }
+  .add-btn:hover{background:var(--gold);color:var(--black);}
+  .add-btn.added{background:#3f6d4e;border-color:#3f6d4e;color:#fff;}
+  .shop-more{text-align:center;margin-top:54px;}
+
+  /* ---------- USP / WHY ---------- */
+  .usp{background:var(--cream-deep);}
+  .usp-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:30px;}
+  .usp-card{text-align:center;padding:40px 22px;background:#fff;border-radius:18px;box-shadow:0 10px 26px rgba(0,0,0,.05);transition:.4s;}
+  .usp-card:hover{transform:translateY(-10px);box-shadow:0 20px 40px rgba(201,162,75,.2);}
+  .usp-icon{
+    width:68px;height:68px;border-radius:50%;margin:0 auto 20px;
+    background:linear-gradient(135deg,var(--gold-light),var(--gold));
+    display:flex;align-items:center;justify-content:center;font-size:28px;color:var(--black);
+  }
+  .usp-card h4{font-family:'Marcellus',serif;font-size:19px;margin-bottom:10px;}
+  .usp-card p{font-size:13.5px;color:#7a6f5e;line-height:1.7;}
+
+  /* ---------- GIFTING BANNER ---------- */
+  .gifting{
+    position:relative;background:linear-gradient(120deg,#1a140d,#0c0a08 60%);color:var(--cream);overflow:hidden;
+  }
+  .gifting .wrap{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;}
+  .gifting img{border-radius:20px;box-shadow:var(--shadow);}
+  .gifting h2{font-size:clamp(30px,4vw,44px);margin-bottom:20px;}
+  .gifting p{color:var(--text-muted);line-height:1.85;margin-bottom:28px;font-size:15.5px;}
+  .gift-list{display:flex;flex-direction:column;gap:14px;margin-bottom:32px;}
+  .gift-list li{display:flex;align-items:center;gap:12px;font-size:14.5px;color:var(--cream);}
+  .gift-list li .check{
+    width:22px;height:22px;border-radius:50%;background:rgba(201,162,75,.18);color:var(--gold);
+    display:flex;align-items:center;justify-content:center;font-size:12px;flex:none;
+  }
+
+  /* ---------- COUNTER STRIP ---------- */
+  .counters{background:var(--black);padding:60px 0;}
+  .counter-grid{display:grid;grid-template-columns:repeat(4,1fr);text-align:center;gap:20px;}
+  .counter-grid h3{color:var(--gold);font-size:42px;font-weight:700;font-family:'Cormorant Garamond',serif;}
+  .counter-grid span{color:var(--text-muted);font-size:12.5px;letter-spacing:1.5px;text-transform:uppercase;}
+
+  /* ---------- TESTIMONIALS ---------- */
+  .testimonials{background:var(--cream);}
+  .testi-track-wrap{overflow:hidden;position:relative;}
+  .testi-track{display:flex;transition:transform .6s ease;}
+  .testi-slide{min-width:100%;display:flex;justify-content:center;}
+  .testi-card{
+    max-width:680px;background:#fff;border-radius:22px;padding:46px 50px;text-align:center;
+    box-shadow:0 16px 40px rgba(0,0,0,.07);position:relative;
+  }
+  .testi-card .stars{justify-content:center;display:flex;margin-bottom:18px;}
+  .testi-card p{font-size:18px;font-style:italic;line-height:1.8;color:#3a342a;font-family:'Cormorant Garamond',serif;margin-bottom:24px;}
+  .testi-user{display:flex;align-items:center;justify-content:center;gap:14px;}
+  .testi-user img{width:48px;height:48px;border-radius:50%;object-fit:cover;border:2px solid var(--gold);}
+  .testi-user h5{font-size:14.5px;}
+  .testi-user span{font-size:12px;color:#9a8f7c;}
+  .testi-dots{display:flex;justify-content:center;gap:10px;margin-top:34px;}
+  .testi-dots span{width:9px;height:9px;border-radius:50%;background:#e4d8bd;cursor:pointer;transition:.3s;}
+  .testi-dots span.active{background:var(--gold);width:24px;border-radius:5px;}
+
+  /* ---------- INSTAGRAM STRIP ---------- */
+  .insta{background:var(--black-soft);}
+  .insta-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:14px;}
+  .insta-item{position:relative;aspect-ratio:1/1;overflow:hidden;border-radius:12px;cursor:pointer;}
+  .insta-item img{width:100%;height:100%;object-fit:cover;transition:.4s;}
+  .insta-item:hover img{transform:scale(1.12);filter:brightness(.7);}
+  .insta-item::after{
+    content:"♡ View";position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+    color:#fff;font-size:13px;letter-spacing:1px;opacity:0;transition:.3s;background:rgba(0,0,0,.25);
+  }
+  .insta-item:hover::after{opacity:1;}
+
+  /* ---------- NEWSLETTER ---------- */
+  .newsletter{
+    background:linear-gradient(135deg,var(--gold-light),var(--gold) 55%,var(--gold-deep));
+    text-align:center;
+  }
+  .newsletter h2{font-size:clamp(28px,4vw,40px);color:var(--black);margin-bottom:14px;}
+  .newsletter p{color:#3d2f12;margin-bottom:32px;font-size:15px;}
+  .newsletter-form{display:flex;max-width:460px;margin:0 auto;background:#fff;border-radius:50px;padding:6px;box-shadow:var(--shadow);}
+  .newsletter-form input{
+    flex:1;border:none;outline:none;padding:14px 22px;font-size:14px;border-radius:50px;background:transparent;font-family:'Poppins',sans-serif;
+  }
+  .newsletter-form button{
+    border:none;background:var(--black);color:var(--cream);padding:14px 28px;border-radius:50px;
+    font-size:13px;letter-spacing:1px;text-transform:uppercase;cursor:pointer;transition:.3s;
+  }
+  .newsletter-form button:hover{background:#2a221a;}
+  .newsletter-msg{margin-top:16px;font-size:13.5px;color:#2c2310;font-weight:600;height:18px;}
+
+  /* ---------- FOOTER ---------- */
+  footer{background:var(--black);color:var(--text-muted);padding:80px 0 0;}
+  .footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1.2fr;gap:50px;padding-bottom:60px;border-bottom:1px solid rgba(255,255,255,.08);}
+  .footer-brand p{margin:18px 0 22px;font-size:13.5px;line-height:1.8;max-width:280px;}
+  .social-row{display:flex;gap:12px;}
+  .social-row a{
+    width:38px;height:38px;border:1px solid rgba(201,162,75,.4);border-radius:50%;display:flex;align-items:center;justify-content:center;
+    color:var(--gold-light);font-size:14px;transition:.3s;
+  }
+  .social-row a:hover{background:var(--gold);color:var(--black);}
+  footer h5{color:var(--cream);font-size:15px;margin-bottom:22px;font-family:'Marcellus',serif;letter-spacing:.5px;}
+  footer ul li{margin-bottom:12px;font-size:13.5px;}
+  footer ul li a:hover{color:var(--gold-light);}
+  .footer-contact li{display:flex;gap:10px;align-items:flex-start;font-size:13.5px;margin-bottom:16px;}
+  .footer-bottom{display:flex;justify-content:space-between;align-items:center;padding:26px 0;font-size:12.5px;flex-wrap:wrap;gap:10px;}
+  .footer-bottom .pay span{margin-left:10px;opacity:.6;}
+
+  /* ---------- BACK TO TOP / TOAST ---------- */
+  .back-top{
+    position:fixed;bottom:28px;right:28px;width:48px;height:48px;border-radius:50%;
+    background:var(--gold);color:var(--black);display:flex;align-items:center;justify-content:center;
+    cursor:pointer;box-shadow:0 10px 25px rgba(0,0,0,.3);z-index:900;opacity:0;transform:translateY(20px);transition:.4s;font-size:18px;
+  }
+  .back-top.show{opacity:1;transform:translateY(0);}
+  .toast{
+    position:fixed;bottom:30px;left:50%;transform:translateX(-50%) translateY(40px);
+    background:var(--black);color:var(--cream);padding:14px 28px;border-radius:50px;font-size:13.5px;
+    border:1px solid var(--gold);opacity:0;transition:.4s;z-index:1100;display:flex;align-items:center;gap:10px;
+  }
+  .toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+
+  /* ---------- MOBILE MENU ---------- */
+  .mobile-menu{
+    position:fixed;top:0;right:-100%;width:78%;max-width:340px;height:100vh;background:var(--black);
+    z-index:1050;transition:.4s;padding:100px 36px 40px;display:flex;flex-direction:column;gap:28px;
+    box-shadow:-10px 0 40px rgba(0,0,0,.4);
+  }
+  .mobile-menu.active{right:0;}
+  .mobile-menu a{color:var(--cream);font-size:16px;letter-spacing:1px;text-transform:uppercase;}
+  .menu-overlay{
+    position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:1040;opacity:0;visibility:hidden;transition:.4s;
+  }
+  .menu-overlay.active{opacity:1;visibility:visible;}
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width:1024px){
+    .cat-grid,.usp-grid{grid-template-columns:repeat(2,1fr);}
+    .product-grid{grid-template-columns:repeat(2,1fr);}
+    .counter-grid{grid-template-columns:repeat(2,1fr);gap:36px;}
+    .insta-grid{grid-template-columns:repeat(3,1fr);}
+    .footer-grid{grid-template-columns:repeat(2,1fr);gap:40px;}
+    .gifting .wrap{grid-template-columns:1fr;}
+    .gifting .wrap{text-align:left;}
+  }
+  @media (max-width:880px){
+    .nav-links{display:none;}
+    .burger{display:flex;}
+    .hero .wrap{grid-template-columns:1fr;text-align:center;padding-top:120px;}
+    .hero p{margin:0 auto 34px;}
+    .hero-btns,.hero-stats{justify-content:center;}
+    .hero-visual{margin-top:30px;}
+    .hero-ring{width:300px;height:300px;}
+    .hero-photo{width:230px;height:300px;}
+  }
+  @media (max-width:600px){
+    section{padding:80px 0;}
+    .wrap{padding:0 20px;}
+    .cat-grid,.usp-grid,.product-grid{grid-template-columns:1fr 1fr;gap:16px;}
+    .insta-grid{grid-template-columns:repeat(2,1fr);}
+    .footer-grid{grid-template-columns:1fr;gap:36px;}
+    .testi-card{padding:32px 24px;}
+    .filter-tabs{gap:8px;}
+    .filter-tab{padding:9px 16px;font-size:11.5px;}
+  }
+  @media (max-width:480px){
+    .cat-grid,.usp-grid,.product-grid{grid-template-columns:1fr;}
+    .counter-grid{grid-template-columns:1fr 1fr;}
+    .hero-stats{gap:26px;}
+    .newsletter-form{flex-direction:column;border-radius:18px;gap:8px;padding:14px;}
+    .newsletter-form button{border-radius:14px;}
+    .newsletter-form input{text-align:center;}
+  }
+  @media (max-width:360px){
+    .logo-text{font-size:17px;}
+    .hero h1{font-size:34px;}
+  }
+</style>
+</head>
+<body>
+
+<!-- ===================== HEADER ===================== -->
+<header id="siteHeader">
+  <div class="wrap">
+    <nav>
+      <a href="#home" class="logo">
+        <span class="logo-emblem">A</span>
+        <span class="logo-text">AURION <span>JEWELLERY</span></span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#categories">Collections</a></li>
+        <li><a href="#shop">Shop</a></li>
+        <li><a href="#gifting">Gifting</a></li>
+        <li><a href="#testimonials">Reviews</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <div class="nav-actions">
+        <span class="icon-btn" id="wishIcon">♡<span class="cart-count" id="wishCount">0</span></span>
+        <span class="icon-btn" id="cartIcon">🛍<span class="cart-count" id="cartCount">0</span></span>
+        <div class="burger" id="burger"><span></span><span></span><span></span></div>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<div class="menu-overlay" id="menuOverlay"></div>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#home">Home</a>
+  <a href="#categories">Collections</a>
+  <a href="#shop">Shop</a>
+  <a href="#gifting">Gifting</a>
+  <a href="#testimonials">Reviews</a>
+  <a href="#contact">Contact</a>
+</div>
+
+<!-- ===================== HERO ===================== -->
+<section class="hero" id="home">
+  <div class="hero-particles" id="particles"></div>
+  <div class="wrap">
+    <div>
+      <span class="hero-tag">✦ Handpicked Artificial Jewellery</span>
+      <h1>Shine Bright for Every <em>Story</em> You Live</h1>
+      <p>From everyday elegance to once-in-a-lifetime gifting moments — Aurion crafts artificial jewellery that feels as luxurious as it looks, without the price tag of real gold.</p>
+      <div class="hero-btns">
+        <a href="#shop" class="btn btn-gold">Shop The Collection →</a>
+        <a href="#gifting" class="btn btn-outline">Explore Gifting</a>
+      </div>
+      <div class="hero-stats">
+        <div><h3 data-count="25000">0</h3><span>Happy Customers</span></div>
+        <div><h3 data-count="480">0</h3><span>Unique Designs</span></div>
+        <div><h3 data-count="4.8" data-decimal="1">0</h3><span>Average Rating</span></div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-ring"></div>
+      <div class="hero-photo">
+        <img src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?q=80&w=800&auto=format&fit=crop" alt="Aurion Jewellery model wearing elegant necklace">
+      </div>
+      <div class="floating-card c1"><span class="dot"></span> Free Gift Wrapping</div>
+      <div class="floating-card c2"><span class="dot"></span> Hypoallergenic & Tarnish-Free</div>
+    </div>
+  </div>
+  <div class="scroll-cue"><span>Scroll</span><span class="line"></span></div>
+</section>
+
+<!-- ===================== MARQUEE ===================== -->
+<div class="marquee">
+  <div class="marquee-track" id="marqueeTrack">
+    <span>Free Shipping Over ₹999</span>
+    <span>Hypoallergenic Plating</span>
+    <span>7-Day Easy Returns</span>
+    <span>Trending Bridal Sets</span>
+    <span>Gift-Ready Packaging</span>
+    <span>Free Shipping Over ₹999</span>
+    <span>Hypoallergenic Plating</span>
+    <span>7-Day Easy Returns</span>
+    <span>Trending Bridal Sets</span>
+    <span>Gift-Ready Packaging</span>
+  </div>
+</div>
+
+<!-- ===================== CATEGORIES ===================== -->
+<section class="categories" id="categories">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Curated Collections</span>
+      <h2>Shop by Category</h2>
+      <p>Every piece designed to layer beautifully, gift effortlessly, and last through every occasion.</p>
+    </div>
+    <div class="cat-grid">
+      <div class="cat-card reveal">
+        <img src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?q=80&w=600&auto=format&fit=crop" alt="Necklaces">
+        <div class="cat-overlay"><span>32 Designs</span><h3>Necklaces</h3></div>
+      </div>
+      <div class="cat-card reveal">
+        <img src="https://images.unsplash.com/photo-1635767798638-3e25273a8236?q=80&w=600&auto=format&fit=crop" alt="Earrings">
+        <div class="cat-overlay"><span>54 Designs</span><h3>Earrings</h3></div>
+      </div>
+      <div class="cat-card reveal">
+        <img src="https://images.unsplash.com/photo-1602173574767-37ac01994b2a?q=80&w=600&auto=format&fit=crop" alt="Rings">
+        <div class="cat-overlay"><span>21 Designs</span><h3>Rings</h3></div>
+      </div>
+      <div class="cat-card reveal">
+        <img src="https://images.unsplash.com/photo-1611591437281-460bfbe1220a?q=80&w=600&auto=format&fit=crop" alt="Bracelets &amp; Bangles">
+        <div class="cat-overlay"><span>38 Designs</span><h3>Bracelets</h3></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== SHOP / PRODUCTS ===================== -->
+<section class="shop" id="shop">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Bestsellers</span>
+      <h2>Loved by Thousands</h2>
+      <p>Filter by what you're shopping for — yourself, or someone you love.</p>
+    </div>
+    <div class="filter-tabs">
+      <div class="filter-tab active" data-filter="all">All</div>
+      <div class="filter-tab" data-filter="necklace">Necklaces</div>
+      <div class="filter-tab" data-filter="earring">Earrings</div>
+      <div class="filter-tab" data-filter="ring">Rings</div>
+      <div class="filter-tab" data-filter="bracelet">Bracelets</div>
+      <div class="filter-tab" data-filter="gift">Gift Sets</div>
+    </div>
+    <div class="product-grid" id="productGrid">
+      <!-- products injected by JS -->
+    </div>
+    <div class="shop-more"><a href="#" class="btn btn-outline">View All Products</a></div>
+  </div>
+</section>
+
+<!-- ===================== USP ===================== -->
+<section class="usp">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">The Aurion Promise</span>
+      <h2>Why Women Choose Aurion</h2>
+    </div>
+    <div class="usp-grid">
+      <div class="usp-card reveal"><div class="usp-icon">💎</div><h4>Premium Finish</h4><p>Rhodium &amp; gold-toned plating that mirrors fine jewellery, at a fraction of the price.</p></div>
+      <div class="usp-card reveal"><div class="usp-icon">🌿</div><h4>Skin Friendly</h4><p>Nickel-free, hypoallergenic alloys safe for sensitive skin &amp; everyday wear.</p></div>
+      <div class="usp-card reveal"><div class="usp-icon">🎁</div><h4>Gift Ready</h4><p>Complimentary luxury packaging with every order — ready to gift, no wrapping needed.</p></div>
+      <div class="usp-card reveal"><div class="usp-icon">↩️</div><h4>Easy Returns</h4><p>7-day hassle-free returns &amp; exchanges, because the perfect fit matters.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== GIFTING ===================== -->
+<section class="gifting" id="gifting">
+  <div class="wrap">
+    <img class="reveal" src="https://images.unsplash.com/photo-1599643477877-530eb83abc8e?q=80&w=900&auto=format&fit=crop" alt="Gift-wrapped jewellery box">
+    <div class="reveal">
+      <span class="eyebrow" style="color:var(--gold-light)">Gifting Edit</span>
+      <h2>A Gift She'll Wear, Not Just Open</h2>
+      <p>Birthdays, anniversaries, Rakhi, weddings, or just because — our gifting edit takes the guesswork out of choosing jewellery she'll actually love.</p>
+      <ul class="gift-list">
+        <li><span class="check">✓</span> Curated gift sets starting at ₹499</li>
+        <li><span class="check">✓</span> Personalised gift notes, free of charge</li>
+        <li><span class="check">✓</span> Premium box packaging on every order</li>
+        <li><span class="check">✓</span> Same-day dispatch on select cities</li>
+      </ul>
+      <a href="#shop" class="btn btn-gold">Shop Gift Sets →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== COUNTERS ===================== -->
+<section class="counters">
+  <div class="wrap counter-grid">
+    <div><h3 data-count="25000">0</h3><span>Happy Customers</span></div>
+    <div><h3 data-count="480">0</h3><span>Unique Designs</span></div>
+    <div><h3 data-count="120">0</h3><span>Cities Delivered</span></div>
+    <div><h3 data-count="98">0</h3><span>% On-Time Delivery</span></div>
+  </div>
+</section>
+
+<!-- ===================== TESTIMONIALS ===================== -->
+<section class="testimonials" id="testimonials">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">In Her Words</span>
+      <h2>Loved Across India</h2>
+    </div>
+    <div class="testi-track-wrap">
+      <div class="testi-track" id="testiTrack">
+        <div class="testi-slide">
+          <div class="testi-card">
+            <div class="stars">★★★★★</div>
+            <p>"Ordered a necklace set for my sister's wedding gift — the finish looks so premium, no one believed it was artificial jewellery!"</p>
+            <div class="testi-user">
+              <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=100&auto=format&fit=crop" alt="Customer">
+              <div><h5>Priya Sharma</h5><span>Mumbai</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="testi-slide">
+          <div class="testi-card">
+            <div class="stars">★★★★★</div>
+            <p>"The packaging alone made it feel like a luxury gift. I've ordered three times now — quality has stayed consistent."</p>
+            <div class="testi-user">
+              <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?q=80&w=100&auto=format&fit=crop" alt="Customer">
+              <div><h5>Ananya Iyer</h5><span>Bengaluru</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="testi-slide">
+          <div class="testi-card">
+            <div class="stars">★★★★★</div>
+            <p>"Skin-friendly claim is real — I have nickel allergies and wore the earrings all day with zero irritation."</p>
+            <div class="testi-user">
+              <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=100&auto=format&fit=crop" alt="Customer">
+              <div><h5>Riya Kapoor</h5><span>Delhi</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="testi-dots" id="testiDots"></div>
+  </div>
+</section>
+
+<!-- ===================== INSTAGRAM ===================== -->
+<section class="insta">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow" style="color:var(--gold-light)">@aurionjewellery</span>
+      <h2 style="color:var(--cream)">Follow Our Sparkle</h2>
+    </div>
+    <div class="insta-grid">
+      <div class="insta-item"><img src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?q=80&w=300&auto=format&fit=crop" alt="Instagram post"></div>
+      <div class="insta-item"><img src="https://images.unsplash.com/photo-1635767798638-3e25273a8236?q=80&w=300&auto=format&fit=crop" alt="Instagram post"></div>
+      <div class="insta-item"><img src="https://images.unsplash.com/photo-1602173574767-37ac01994b2a?q=80&w=300&auto=format&fit=crop" alt="Instagram post"></div>
+      <div class="insta-item"><img src="https://images.unsplash.com/photo-1611591437281-460bfbe1220a?q=80&w=300&auto=format&fit=crop" alt="Instagram post"></div>
+      <div class="insta-item"><img src="https://images.unsplash.com/photo-1599643477877-530eb83abc8e?q=80&w=300&auto=format&fit=crop" alt="Instagram post"></div>
+      <div class="insta-item"><img src="https://images.unsplash.com/photo-1573408301185-9146fe634ad0?q=80&w=300&auto=format&fit=crop" alt="Instagram post"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== NEWSLETTER ===================== -->
+<section class="newsletter">
+  <div class="wrap">
+    <h2>Get 10% Off Your First Order</h2>
+    <p>Join the Aurion circle for early access to new drops &amp; exclusive gifting offers.</p>
+    <form class="newsletter-form" id="newsletterForm">
+      <input type="email" placeholder="Enter your email address" required>
+      <button type="submit">Subscribe</button>
+    </form>
+    <div class="newsletter-msg" id="newsletterMsg"></div>
+  </div>
+</section>
+
+<!-- ===================== FOOTER ===================== -->
+<footer id="contact">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="#home" class="logo">
+          <span class="logo-emblem">A</span>
+          <span class="logo-text">AURION <span>JEWELLERY</span></span>
+        </a>
+        <p>Elegant artificial jewellery for gifting and self-use — designed in India, for every woman who wants to shine without compromise.</p>
+        <div class="social-row">
+          <a href="#" aria-label="Instagram">IG</a>
+          <a href="#" aria-label="Facebook">FB</a>
+          <a href="#" aria-label="Pinterest">PI</a>
+          <a href="#" aria-label="WhatsApp">WA</a>
+        </div>
+      </div>
+      <div>
+        <h5>Shop</h5>
+        <ul>
+          <li><a href="#shop">Necklaces</a></li>
+          <li><a href="#shop">Earrings</a></li>
+          <li><a href="#shop">Rings</a></li>
+          <li><a href="#shop">Bracelets</a></li>
+          <li><a href="#gifting">Gift Sets</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Support</h5>
+        <ul>
+          <li><a href="#">Track Order</a></li>
+          <li><a href="#">Returns &amp; Exchange</a></li>
+          <li><a href="#">Shipping Info</a></li>
+          <li><a href="#">FAQs</a></li>
+          <li><a href="#">Care Guide</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Get in Touch</h5>
+        <ul class="footer-contact">
+          <li>📍 Aurion House, MG Road, Bengaluru, India</li>
+          <li>📞 +91 98765 43210</li>
+          <li>✉️ hello@aurionjewellery.com</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Aurion Jewellery. All rights reserved.</span>
+      <span class="pay">We accept <span>UPI</span><span>Cards</span><span>COD</span></span>
+    </div>
+  </div>
+</footer>
+
+<div class="back-top" id="backTop">↑</div>
+<div class="toast" id="toast"></div>
+
+<script>
+/* ===== Product Data ===== */
+const products = [
+  {name:"Gold Plated Kundan Choker", cat:"necklace", price:1299, old:1899, img:"https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?q=80&w=500&auto=format&fit=crop", badge:"Bestseller"},
+  {name:"Pearl Drop Earrings", cat:"earring", price:599, old:899, img:"https://images.unsplash.com/photo-1635767798638-3e25273a8236?q=80&w=500&auto=format&fit=crop", badge:"New"},
+  {name:"Rose Gold Statement Ring", cat:"ring", price:449, old:699, img:"https://images.unsplash.com/photo-1602173574767-37ac01994b2a?q=80&w=500&auto=format&fit=crop", badge:""},
+  {name:"Layered Bracelet Set", cat:"bracelet", price:799, old:1099, img:"https://images.unsplash.com/photo-1611591437281-460bfbe1220a?q=80&w=500&auto=format&fit=crop", badge:"Trending"},
+  {name:"Bridal Jewellery Gift Set", cat:"gift", price:2499, old:3499, img:"https://images.unsplash.com/photo-1599643477877-530eb83abc8e?q=80&w=500&auto=format&fit=crop", badge:"Gift Pick"},
+  {name:"Minimal Studs Combo (3pc)", cat:"earring", price:399, old:599, img:"https://images.unsplash.com/photo-1573408301185-9146fe634ad0?q=80&w=500&auto=format&fit=crop", badge:""},
+  {name:"Temple Jhumka Earrings", cat:"earring", price:649, old:949, img:"https://images.unsplash.com/photo-1611652022419-a9419f74343d?q=80&w=500&auto=format&fit=crop", badge:""},
+  {name:"Stackable Rings Set (5pc)", cat:"ring", price:549, old:799, img:"https://images.unsplash.com/photo-1605100804763-247f67b3557e?q=80&w=500&auto=format&fit=crop", badge:""},
+];
+
+const grid = document.getElementById('productGrid');
+function renderProducts(){
+  grid.innerHTML = products.map((p,i)=>`
+    <div class="product-card show" data-cat="${p.cat}" style="transition-delay:${i*40}ms">
+      <div class="product-img">
+        ${p.badge ? `<span class="badge">${p.badge}</span>` : ''}
+        <div class="wishlist" data-idx="${i}">♡</div>
+        <img src="${p.img}" alt="${p.name}" loading="lazy">
+      </div>
+      <div class="product-info">
+        <span class="product-cat">${p.cat}</span>
+        <h4>${p.name}</h4>
+        <div class="stars">★★★★★</div>
+        <div class="price-row"><span class="price">₹${p.price}</span><span class="price-old">₹${p.old}</span></div>
+        <button class="add-btn" data-idx="${i}">Add to Bag</button>
+      </div>
+    </div>
+  `).join('');
+}
+renderProducts();
+
+/* ===== Filter Tabs ===== */
+const tabs = document.querySelectorAll('.filter-tab');
+tabs.forEach(tab=>{
+  tab.addEventListener('click', ()=>{
+    tabs.forEach(t=>t.classList.remove('active'));
+    tab.classList.add('active');
+    const filter = tab.dataset.filter;
+    document.querySelectorAll('.product-card').forEach(card=>{
+      const match = filter === 'all' || card.dataset.cat === filter;
+      card.classList.toggle('show', match);
+    });
+  });
+});
+
+/* ===== Cart / Wishlist ===== */
+let cartCount = 0, wishCount = 0;
+const cartCountEl = document.getElementById('cartCount');
+const wishCountEl = document.getElementById('wishCount');
+const toast = document.getElementById('toast');
+function showToast(msg){
+  toast.textContent = msg;
+  toast.classList.add('show');
+  clearTimeout(window._toastTimer);
+  window._toastTimer = setTimeout(()=>toast.classList.remove('show'), 2200);
+}
+grid.addEventListener('click', e=>{
+  if(e.target.classList.contains('add-btn')){
+    cartCount++;
+    cartCountEl.textContent = cartCount;
+    e.target.textContent = "Added ✓";
+    e.target.classList.add('added');
+    showToast('Added to bag');
+    setTimeout(()=>{ e.target.textContent = "Add to Bag"; e.target.classList.remove('added'); }, 1600);
+  }
+  if(e.target.classList.contains('wishlist')){
+    e.target.classList.toggle('active');
+    e.target.textContent = e.target.classList.contains('active') ? '♥' : '♡';
+    wishCount += e.target.classList.contains('active') ? 1 : -1;
+    wishCountEl.textContent = wishCount;
+  }
+});
+
+/* ===== Header scroll effect ===== */
+const header = document.getElementById('siteHeader');
+const backTop = document.getElementById('backTop');
+window.addEventListener('scroll', ()=>{
+  header.classList.toggle('scrolled', window.scrollY > 60);
+  backTop.classList.toggle('show', window.scrollY > 600);
+});
+backTop.addEventListener('click', ()=>window.scrollTo({top:0, behavior:'smooth'}));
+
+/* ===== Mobile menu ===== */
+const burger = document.getElementById('burger');
+const mobileMenu = document.getElementById('mobileMenu');
+const menuOverlay = document.getElementById('menuOverlay');
+function closeMenu(){
+  burger.classList.remove('active');
+  mobileMenu.classList.remove('active');
+  menuOverlay.classList.remove('active');
+}
+burger.addEventListener('click', ()=>{
+  burger.classList.toggle('active');
+  mobileMenu.classList.toggle('active');
+  menuOverlay.classList.toggle('active');
+});
+menuOverlay.addEventListener('click', closeMenu);
+mobileMenu.querySelectorAll('a').forEach(a=>a.addEventListener('click', closeMenu));
+
+/* ===== Scroll reveal ===== */
+const revealEls = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver(entries=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){ entry.target.classList.add('in'); observer.unobserve(entry.target); }
+  });
+},{threshold:0.15});
+revealEls.forEach(el=>observer.observe(el));
+
+/* ===== Animated counters ===== */
+const counters = document.querySelectorAll('[data-count]');
+const counterObserver = new IntersectionObserver(entries=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      const el = entry.target;
+      const target = parseFloat(el.dataset.count);
+      const decimal = el.dataset.decimal ? parseInt(el.dataset.decimal) : 0;
+      let current = 0;
+      const step = target / 60;
+      const tick = ()=>{
+        current += step;
+        if(current >= target){ el.textContent = target.toFixed(decimal) + (target>=100 && decimal===0 ? '+' : ''); return; }
+        el.textContent = current.toFixed(decimal);
+        requestAnimationFrame(tick);
+      };
+      tick();
+      counterObserver.unobserve(el);
+    }
+  });
+},{threshold:0.4});
+counters.forEach(c=>counterObserver.observe(c));
+
+/* ===== Testimonial slider ===== */
+const testiTrack = document.getElementById('testiTrack');
+const testiSlides = document.querySelectorAll('.testi-slide');
+const testiDotsWrap = document.getElementById('testiDots');
+let testiIndex = 0;
+testiSlides.forEach((_,i)=>{
+  const dot = document.createElement('span');
+  if(i===0) dot.classList.add('active');
+  dot.addEventListener('click', ()=>goToSlide(i));
+  testiDotsWrap.appendChild(dot);
+});
+function goToSlide(i){
+  testiIndex = i;
+  testiTrack.style.transform = `translateX(-${i*100}%)`;
+  testiDotsWrap.querySelectorAll('span').forEach((d,idx)=>d.classList.toggle('active', idx===i));
+}
+setInterval(()=>{ goToSlide((testiIndex+1) % testiSlides.length); }, 5000);
+
+/* ===== Newsletter ===== */
+document.getElementById('newsletterForm').addEventListener('submit', e=>{
+  e.preventDefault();
+  document.getElementById('newsletterMsg').textContent = "🎉 Thank you! Check your inbox for your 10% off code.";
+  e.target.reset();
+});
+
+/* ===== Hero floating particles ===== */
+const particlesWrap = document.getElementById('particles');
+for(let i=0;i<18;i++){
+  const p = document.createElement('span');
+  const size = Math.random()*4+2;
+  p.style.width = size+'px';
+  p.style.height = size+'px';
+  p.style.left = Math.random()*100+'%';
+  p.style.top = Math.random()*100+'%';
+  p.style.animationDelay = (Math.random()*5)+'s';
+  p.style.animationDuration = (6+Math.random()*6)+'s';
+  particlesWrap.appendChild(p);
+}
+</script>
+</body>
+</html>
